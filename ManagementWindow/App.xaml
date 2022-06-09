@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:ManagementWindow"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ViewStyle/ButtonTop.xaml"/>
+                <ResourceDictionary Source="ViewStyle/RadioButtonstyle.xaml"/>
+                <ResourceDictionary Source="ViewStyle/ToggleButtonStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

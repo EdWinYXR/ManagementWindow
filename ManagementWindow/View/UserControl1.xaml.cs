@@ -13,23 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ManagementWindow
+namespace ManagementWindow.View
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// UserControl1.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class UserControl1 : UserControl
     {
-        public MainWindow()
+        public UserControl1()
         {
             InitializeComponent();
 
-            AppData.Instance.MainWindow = this;
-        }
-
-        private void MobileWindow(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
+            this.Loaded += (e, s) =>
+            {
+                this.uniformgrid.Children.Add();
+            };
         }
     }
 }
