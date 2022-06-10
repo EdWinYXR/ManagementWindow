@@ -1,10 +1,6 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using ManagementWindow.View;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -57,15 +53,14 @@ namespace ManagementWindow.ViewModel
                     switch (res.Content)
                     {
                         case "Window1":
-                            AppData.Instance.MainWindow.container.Content = new Window1Control();
+                            AppData.Instance.MainWindow.container.Content = new WindowShow1();
                             break;
                         case "Window2":
                             break;
                         case "Window3":
-                            AppData.Instance.MainWindow.container.Content = new Window3Control();
+
                             break;
                         case "Window4":
-                            AppData.Instance.MainWindow.container.Content = new Window4Control();
                             break;
                     }
                 });

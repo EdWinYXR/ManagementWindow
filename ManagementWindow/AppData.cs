@@ -1,4 +1,6 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using ManagementWindow.BaseClass;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using SQL;
 using System;
 using System.Collections.Generic;
 using System.Data.Linq;
@@ -25,13 +27,8 @@ namespace ManagementWindow
         /// <summary>
         /// 用户名称
         /// </summary>
-        private string userName;
-        public string UserName { get => userName; set => SetProperty(ref userName, value); }
-        /// <summary>
-        /// 用户权限
-        /// </summary>
-        private string userPermissions;
-        public string UserPermissions { get => userPermissions; set => SetProperty(ref userPermissions, value); }
+        private CurrentUser currentUser=new CurrentUser();
+        public CurrentUser CurrentUser { get => currentUser; set => SetProperty(ref currentUser, value); }
 
         public MainWindow MainWindow { get; set; } = null;
     }
