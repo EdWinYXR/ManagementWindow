@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementWindow.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,11 @@ namespace ManagementWindow
             InitializeComponent();
 
             AppData.Instance.MainWindow = this;
+
+            this.Loaded += (e, s) =>
+            {
+                AppData.Instance.MainWindow.container.Content = new ItemWindow();
+            };
         }
 
         private void MobileWindow(object sender, MouseButtonEventArgs e)

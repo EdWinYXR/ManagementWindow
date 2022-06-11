@@ -1,4 +1,5 @@
 ﻿using ManagementWindow.BaseClass;
+using ManagementWindow.View;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using SQL;
 using System;
@@ -31,5 +32,7 @@ namespace ManagementWindow
         public CurrentUser CurrentUser { get => currentUser; set => SetProperty(ref currentUser, value); }
 
         public MainWindow MainWindow { get; set; } = null;
+
+        public Login LoginModel { get; set; } = null;
     }
 }

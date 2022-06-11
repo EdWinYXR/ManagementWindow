@@ -40,8 +40,10 @@
                         <StackPanel  Orientation="Horizontal">
                             <TextBlock Margin="10 0 10 0"  HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="30"
                                    Text="&#xE8B2;" FontFamily="../#iconfont"/>
-                            <PasswordBox  Background="Transparent" FontSize="25" Width="350"   Padding="0 0 0 0"
-                               VerticalContentAlignment="Center"  BorderBrush="{x:Null}" BorderThickness="0"/>
+                            <PasswordBox  Background="Transparent" FontSize="25" Width="300"   Padding="0 0 0 0"
+                               VerticalContentAlignment="Center"  BorderBrush="{x:Null}" BorderThickness="0"
+                                       InputMethod.PreferredImeConversionMode="NoConversion" 
+                                         x:Name="password" />
                         </StackPanel>
                     </Border>
                     <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center"
@@ -50,8 +52,8 @@
                             FontSize="20"  Height="40" Width="150" Content="登录">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                                    <GradientStop Color="#FFC564B8" Offset="0"/>
-                                    <GradientStop Color="#FFF57A7A" Offset="1"/>
+                                    <GradientStop Color="#FF4661AE" Offset="0"/>
+                                    <GradientStop Color="#FFF9A8A8" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                             <Button.Template>
@@ -62,12 +64,12 @@
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        <Button Command="{Binding CloseCommand}" 
+                        <Button Command="{Binding CloseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
                                 FontSize="20"  Height="40" Width="150"  Content="取消" Margin="90 0 0 0 ">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                                    <GradientStop Color="#FFC564B8" Offset="0"/>
-                                    <GradientStop Color="#FFF57A7A" Offset="1"/>
+                                    <GradientStop Color="#FF4661AE" Offset="0"/>
+                                    <GradientStop Color="#FFF9A8A8" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                             <Button.Template>

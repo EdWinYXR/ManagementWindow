@@ -1,6 +1,8 @@
 ﻿using ManagementWindow.View;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using SQL;
+using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,7 +18,7 @@ namespace ManagementWindow.ViewModel
             {
                 return new RelayCommand<Window>((res) =>
                 {
-                  
+                    res.WindowState = WindowState.Minimized;
                 });
             }
         }
@@ -26,7 +28,10 @@ namespace ManagementWindow.ViewModel
             {
                 return new RelayCommand<Window>((res) =>
                 {
-
+                    if (res.WindowState == WindowState.Maximized)
+                        res.WindowState = WindowState.Normal;
+                    else
+                        res.WindowState = WindowState.Maximized;
                 });
             }
         }
@@ -52,15 +57,16 @@ namespace ManagementWindow.ViewModel
                     if (!(res is System.Windows.Controls.RadioButton)) return;
                     switch (res.Content)
                     {
-                        case "Window1":
-                            AppData.Instance.MainWindow.container.Content = new WindowShow1();
+                        case "首页":
+                           AppData.MainWindow.container.Content=new  ItemWindow(); 
                             break;
-                        case "Window2":
+                        case "员工信息":
+                           AppData.MainWindow.container.Content=new  StaffWindow(); 
                             break;
-                        case "Window3":
+                        case "人员管理":
 
                             break;
-                        case "Window4":
+                        case "项目管理":
                             break;
                     }
                 });

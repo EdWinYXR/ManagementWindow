@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace ManagementWindow.ViewModel
 {
-    public  class WindowControl1: ObservableObject
+    public class StaffWindowViewModel : ObservableObject
     {
-        public WindowControl1()
-        {
-            
-        }
+        public AppData AppData { get; set; } = AppData.Instance;
     }
 }

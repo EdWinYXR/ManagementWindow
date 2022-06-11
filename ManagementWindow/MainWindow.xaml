@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ManagementWindow"
-        xmlns:ViewModel="clr-namespace:ManagementWindow.ViewModel" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" d:DataContext="{d:DesignInstance Type={x:Type ViewModel:MainWindowViewModel}}" x:Class="ManagementWindow.MainWindow"
+    xmlns:ViewModel="clr-namespace:ManagementWindow.ViewModel" d:DataContext="{d:DesignInstance Type={x:Type ViewModel:MainWindowViewModel}}" x:Class="ManagementWindow.MainWindow"
         mc:Ignorable="d"
         FontFamily="{Binding AppData.FontFamilyAll}"
         Title="MainWindow" Height="450" Width="800"
@@ -40,7 +39,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Canvas Background="#FF4C4949" Opacity="0.7"/>
+            <Canvas Background="#FF4C4949" Opacity="1"/>
             <!--头部-->
             <Border BorderBrush="#FF4C4949" BorderThickness="0,0,0,1">
                 <Border.Effect>
@@ -64,7 +63,7 @@
                                VerticalAlignment="Center"  Foreground="White"/>
                                 <TextBlock FontSize="15" Margin="5 0 0 0" Text="{Binding AppData.CurrentUser.username}" VerticalAlignment="Center"
                                    Foreground="White"/>
-                                <Path Stroke="Black" Fill="Black" Margin="3" HorizontalAlignment="Center">
+                                <Path  Stroke="Black"  Margin="3" HorizontalAlignment="Center">
                                     <Path.Data>
                                         M0,0 L0,40
                                     </Path.Data>
@@ -117,26 +116,32 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Canvas Background="#FF4C4949" Opacity="0.2"/>
+                <Canvas Background="#FF4C4949" Opacity="0.5"/>
                 <!--左部-->
                 <Border x:Name="border" Width="150" BorderBrush="#FF4C4949" BorderThickness="0,0,1,0" >
+                    <StackPanel>
+                        <RadioButton Margin="0 15 0 0" Tag="&#xecd0;" Height="30" Content="首页" Style="{DynamicResource RadioButtonLeft}" Foreground="White" Command="{Binding ShowWindow}" CommandParameter="{Binding RelativeSource={RelativeSource Self} }"/>
+                        <RadioButton Margin="0 10 0 0" Tag="&#xecd0;" Height="30" Content="员工信息" Style="{DynamicResource RadioButtonLeft}"  Foreground="White" Command="{Binding ShowWindow}" CommandParameter="{Binding RelativeSource={RelativeSource Self} }"/>
+                        <Path Margin="5 10 5 5" Stroke="Black" StrokeThickness="1">
+                            <Path.Data>
+                                M0,0 L130,0
+                            </Path.Data>
+                        </Path> 
+                        <RadioButton  Margin="0 10 0 0" Tag="&#xecd0;" Height="30" Content="人员管理" Style="{DynamicResource RadioButtonLeft}"  Foreground="White" Command="{Binding ShowWindow}" CommandParameter="{Binding RelativeSource={RelativeSource Self} }"/>
+                        <RadioButton  Margin="0 10 0 0" Tag="&#xecd0;" Height="30" Content="项目管理" Style="{DynamicResource RadioButtonLeft}"  Foreground="White" Command="{Binding ShowWindow}" CommandParameter="{Binding RelativeSource={RelativeSource Self} }"/>
+                        <TextBox Height="60"  Visibility="Hidden"/>
+                        <RadioButton Margin="0 10 0 0" Tag="&#xecd0;" Height="30" Content="添加用户" Style="{DynamicResource RadioButtonLeft}"  Foreground="White" Command="{Binding ShowWindow}" CommandParameter="{Binding RelativeSource={RelativeSource Self} }"/>
+                   </StackPanel>
                     <Border.Effect>
                         <DropShadowEffect Color="#FF4C4949" BlurRadius="10" ShadowDepth="0" Opacity="0.8" />
                     </Border.Effect>
-                    <StackPanel>
-                    <RadioButton Margin="0 15 0 0" Tag="&#xecd0;" Height="30" Content="Window1" Style="{DynamicResource RadioButtonLeft}" Foreground="White" Command="{Binding ShowWindow}" CommandParameter="{Binding RelativeSource={RelativeSource Self} }"/>
-                    <RadioButton Margin="0 10 0 0" Tag="&#xecd0;" Height="30" Content="Window2" Style="{DynamicResource RadioButtonLeft}"  Foreground="White" Command="{Binding ShowWindow}" CommandParameter="{Binding RelativeSource={RelativeSource Self} }"/>
-                    <RadioButton Margin="0 10 0 0" Tag="&#xecd0;" Height="30" Content="Window3" Style="{DynamicResource RadioButtonLeft}"  Foreground="White" Command="{Binding ShowWindow}" CommandParameter="{Binding RelativeSource={RelativeSource Self} }"/>
-                    <RadioButton Margin="0 10 0 0" Tag="&#xecd0;" Height="30" Content="Window4" Style="{DynamicResource RadioButtonLeft}"  Foreground="White" Command="{Binding ShowWindow}" CommandParameter="{Binding RelativeSource={RelativeSource Self} }"/>
-                    <RadioButton Margin="0 10 0 0" Tag="&#xecd0;" Height="30" Content="Window5" Style="{DynamicResource RadioButtonLeft}"  Foreground="White" Command="{Binding ShowWindow}" CommandParameter="{Binding RelativeSource={RelativeSource Self} }"/>
-                    <RadioButton Margin="0 10 0 0" Tag="&#xe60e;" Height="30" Content="设置" Style="{DynamicResource RadioButtonLeft}"  Foreground="White" Command="{Binding ShowWindow}" CommandParameter="{Binding RelativeSource={RelativeSource Self} }"/>
-                    </StackPanel>
                 </Border>
                 <Grid Grid.Column="1">
                     <ToggleButton x:Name="toggleButton" Background="Transparent" Margin="0 10 0 0" Foreground="White" FontSize="20"  
                         HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Height="20" RenderTransformOrigin="0.5,0.5" Style="{DynamicResource ToggleButtonStyle}" Panel.ZIndex="99" >
                     </ToggleButton>
-                    <ContentControl x:Name="container"   RenderTransformOrigin="0.5,0.5"/>
+                    <ContentControl x:Name="container"   RenderTransformOrigin="0.5,0.5"
+                                    />
                 </Grid>
             </Grid>
         </Grid>
