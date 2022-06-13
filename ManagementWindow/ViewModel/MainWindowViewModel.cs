@@ -64,7 +64,7 @@ namespace ManagementWindow.ViewModel
                            AppData.MainWindow.container.Content=new  StaffWindow(); 
                             break;
                         case "人员管理":
-
+                            AppData.MainWindow.container.Content=new  PersonnelManagement();
                             break;
                         case "项目管理":
                             break;

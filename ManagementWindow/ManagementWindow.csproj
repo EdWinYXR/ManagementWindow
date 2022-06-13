@@ -91,11 +91,21 @@
     </ApplicationDefinition>
     <Compile Include="BaseClass\base.cs" />
     <Compile Include="SQL\ORCALE.cs" />
+    <Compile Include="SQL\SqlAssociated.cs" />
+    <Compile Include="ViewModel\AddPersonnelViewModel.cs" />
+    <Compile Include="ViewModel\BindingProjectWindowViewModel.cs" />
     <Compile Include="ViewModel\ControlViewModel.cs" />
     <Compile Include="ViewModel\INIT.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\PersonnelManagementViewModel.cs" />
     <Compile Include="ViewModel\StaffWindowViewModel.cs" />
+    <Compile Include="View\AddPersonnel.xaml.cs">
+      <DependentUpon>AddPersonnel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BindingProjectWindow.xaml.cs">
+      <DependentUpon>BindingProjectWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Control.xaml.cs">
       <DependentUpon>Control.xaml</DependentUpon>
     </Compile>
@@ -104,6 +114,9 @@
     </Compile>
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PersonnelManagement.xaml.cs">
+      <DependentUpon>PersonnelManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StaffWindow.xaml.cs">
       <DependentUpon>StaffWindow.xaml</DependentUpon>
@@ -133,15 +146,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Control.xaml">
+    <Page Include="View\AddPersonnel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BindingProjectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="View\ItemWindow.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="View\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\PersonnelManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

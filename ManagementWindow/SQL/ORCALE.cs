@@ -8,7 +8,7 @@ namespace SQL
     public class OrCale
     {
         //数据源
-        readonly String ConString = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=ORCL)));Persist Security Info=True;User ID=MES;Password=qwasZX12;";
+        readonly String ConString = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.3.114)(PORT=1521))(CONNECT_DATA=(SID=ProPerDBSid)));Persist Security Info=True;User ID=MES;Password=qwasZX12;";
         OracleConnection conn = null;
         private static object obj = new object();//声明锁的类型
 

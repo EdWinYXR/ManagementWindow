@@ -30,9 +30,11 @@ namespace ManagementWindow
         /// </summary>
         private CurrentUser currentUser=new CurrentUser();
         public CurrentUser CurrentUser { get => currentUser; set => SetProperty(ref currentUser, value); }
-
+        #region 执行期向下文
         public MainWindow MainWindow { get; set; } = null;
-
         public Login LoginModel { get; set; } = null;
+        public AddPersonnel AddPersonnel { get; set; } = null;
+        public BindingProjectWindow BindingProjectWindow { get; set; } = null;
+        #endregion
     }
 }

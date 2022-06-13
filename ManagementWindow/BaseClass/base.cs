@@ -11,7 +11,7 @@ namespace ManagementWindow.BaseClass
     /// <summary>
     /// 用户
     /// </summary>
-   public  class CurrentUser
+    public class CurrentUser
     {
         public string username { get; set; }
         public string password { get; set; }
@@ -26,7 +26,19 @@ namespace ManagementWindow.BaseClass
         public string Name { get; set; }
         public string ItemNum { get; set; }
         public string Email { get; set; }
-
         public string Phone { get; set; }
+        public string Department { get; set; }//部门
+    }
+    /// <summary>
+    /// 项目管理
+    /// </summary>
+    public class ItemMes
+    {
+        public string ItemName { get; set; }
+        public string ItemNo { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
+        public string ItemState { get; set; }
+        public string Participants { get; set; }
     }
 }
