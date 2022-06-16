@@ -9,13 +9,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <TextBlock x:Name="TextBlock" FontFamily="../BOS/#iconfont" Text="333"/>
+                    <TextBlock x:Name="TextBlock" FontFamily="/Does/#iconfont" Text="&#xe609;"/>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="TextBlock.Text" Value="111" TargetName="TextBlock"/>
+                            <Setter Property="TextBlock.Text" Value="&#xe608;" TargetName="TextBlock"/>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="False">
-                            <Setter Property="TextBlock.Text" Value="222" TargetName="TextBlock"/>
+                            <Setter Property="TextBlock.Text" Value="&#xe609;" TargetName="TextBlock"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

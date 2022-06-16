@@ -8,34 +8,43 @@
              xmlns:ViewModel="clr-namespace:ManagementWindow.ViewModel" 
              x:Class="ManagementWindow.View.PersonnelManagement"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             FontFamily="{Binding AppData.FontFamilyAll}">
     <UserControl.DataContext>
         <ViewModel:PersonnelManagementViewModel/>
     </UserControl.DataContext>
     <DockPanel Margin="20 0 5 0">
-        <Grid DockPanel.Dock="Top">
+        <Grid DockPanel.Dock="Top" Panel.ZIndex="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <TextBox  Margin="0,0,0,10" x:Name="txtFilter" TextChanged="txtFilter_TextChanged" />
-            <DatePicker Margin="5 0 0 0" HorizontalAlignment="Right" Grid.Column="1"/>
+            <!--<Button x:Name="button" Content="12121" Grid.Column="1" HorizontalAlignment="Center"  
+                       Background="White"  Margin="0,0,0,10"/>-->
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <DatePicker    x:Name="starte"   Tag="开始时间" 
+                       Margin="5 0 0 10" Style="{DynamicResource DatePickerStyle1}"/>
+                <DatePicker   x:Name="end"   Tag="结束时间" 
+                       Margin="5 0 0 10" Style="{DynamicResource DatePickerStyle1}"/>
+            </StackPanel>
         </Grid>
-        <ListView x:Name="lvUsers">
-            <ListView.ContextMenu>
+        <ListView x:Name="lvUsers" >
+            <ListView.ContextMenu >
                 <ContextMenu>
-                    <MenuItem Header="绑定项目" Command="{Binding BindingProject}"/>
+                    <MenuItem Header="绑定项目" Command="{Binding BindingProject}" CommandParameter="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}, Mode=FindAncestor}}"/>
                     <MenuItem Header="添加员工" Command="{Binding AddPersonnel}"/>
-                    <MenuItem Header="删除" Command="{Binding DeletePersonnel}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ContextMenu},Path=PlacementTarget}"/>
+                    <MenuItem Header="删除" Command="{Binding DeletePersonnel}" CommandParameter="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}, Mode=FindAncestor}}"/>
                 </ContextMenu>
             </ListView.ContextMenu>
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="工号"  DisplayMemberBinding="{Binding ID}" />
+            <ListView.View >
+                <GridView >
+                    <GridViewColumn  Header="工号"  DisplayMemberBinding="{Binding ID}" />
                     <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="电话"  DisplayMemberBinding="{Binding Phone}" />
                     <GridViewColumn Header="邮件"  DisplayMemberBinding="{Binding Email}" />
                     <GridViewColumn Header="项目数"  DisplayMemberBinding="{Binding ItemNum}" />
+                    <GridViewColumn Header="等级"  DisplayMemberBinding="{Binding grade}" />
                     <GridViewColumn Header="部门"  DisplayMemberBinding="{Binding Department}" />
                 </GridView>
             </ListView.View>

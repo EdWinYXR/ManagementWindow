@@ -1,0 +1,52 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagementWindow.View"
+             xmlns:hc="https://handyorg.github.io/handycontrol" 
+             xmlns:ViewModel="clr-namespace:ManagementWindow.ViewModel" 
+             x:Class="ManagementWindow.View.ItemManagementWindow"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             FontFamily="{Binding AppData.FontFamilyAll}">
+    <UserControl.DataContext>
+        <ViewModel:ItemManagementViewModel/>
+    </UserControl.DataContext>
+    <DockPanel Margin="20 0 5 0">
+        <Grid DockPanel.Dock="Top" Panel.ZIndex="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox  Margin="0,0,0,10" x:Name="txtFilter" TextChanged="txtFilter_TextChanged" />
+            <!--<Button x:Name="button" Content="12121" Grid.Column="1" HorizontalAlignment="Center"  
+                       Background="White"  Margin="0,0,0,10"/>-->
+            <!--<StackPanel Grid.Column="1" Orientation="Horizontal">
+                <DatePicker    x:Name="starte"   Tag="开始时间" 
+                       Margin="5 0 0 10" Style="{DynamicResource DatePickerStyle1}"/>
+                <DatePicker   x:Name="end"   Tag="结束时间" 
+                       Margin="5 0 0 10" Style="{DynamicResource DatePickerStyle1}"/>
+            </StackPanel>-->
+        </Grid>
+        <ListView x:Name="lvUsers" >
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="指派人员" Command="{Binding BindingItems}" CommandParameter="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}, Mode=FindAncestor}}"/>
+                    <MenuItem Header="添加项目" Command="{Binding AddItemsl}"/>
+                    <MenuItem Header="删除" Command="{Binding DeleteItems}" CommandParameter="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}, Mode=FindAncestor}}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="项目号"  DisplayMemberBinding="{Binding ItemNo}" />
+                    <GridViewColumn Header="项目名称" DisplayMemberBinding="{Binding ItemName}" />
+                    <GridViewColumn Header="开始时间"  DisplayMemberBinding="{Binding StartTime}" />
+                    <GridViewColumn Header="结束时间"  DisplayMemberBinding="{Binding EndTime}" />
+                    <GridViewColumn Header="参与人员"  DisplayMemberBinding="{Binding ItemState}" />
+                    <GridViewColumn Header="项目状态"  DisplayMemberBinding="{Binding Participants}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </DockPanel>
+</UserControl>

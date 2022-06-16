@@ -79,6 +79,48 @@ namespace SQL
                 return x;
             }
         }
+        /// <summary>
+        ///调用存储过程
+        /// </summary>
+        /// <param name="strProcName">存储过程名</param>
+        /// <param name="parameters">存储过程参数</param>
+        /// <returns></returns>
+        public DataSet QueryPro(string strProcName, OracleParameter[] parameters)
+        {
+
+            DataSet dt = new DataSet();
+            lock (obj)
+            {
+                connstart();
+                try
+                {
+                    OracleCommand cmd = new OracleCommand(strProcName,conn);
+                    cmd.CommandText = strProcName;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Connection = conn;
+                    if (parameters != null)
+                    {
+                        // 添加参数
+                        cmd.Parameters.AddRange(parameters);
+                    }
+                    // 取数据
+                    using (OracleDataAdapter adapter = new OracleDataAdapter(cmd))
+                    {
+
+                        adapter.Fill(dt);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("错误:" + ex.Message + "/r/n跟踪:" + ex.StackTrace);
+                }
+                finally
+                {
+                    connclose();
+                }
+                return dt;
+            }
+        }
     }
 }
 

@@ -67,6 +67,10 @@ namespace ManagementWindow.ViewModel
                             AppData.MainWindow.container.Content=new  PersonnelManagement();
                             break;
                         case "项目管理":
+                            AppData.MainWindow.container.Content = new ItemManagementWindow();
+                            break;
+                        case "添加用户":
+                            AppData.MainWindow.container.Content = new AddUserWindow();
                             break;
                     }
                 });

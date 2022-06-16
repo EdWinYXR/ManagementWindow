@@ -28,6 +28,7 @@ namespace ManagementWindow.BaseClass
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Department { get; set; }//部门
+        public string grade { get; set; }
     }
     /// <summary>
     /// 项目管理
@@ -40,5 +41,15 @@ namespace ManagementWindow.BaseClass
         public string EndTime { get; set; }
         public string ItemState { get; set; }
         public string Participants { get; set; }
+    }
+    /// <summary>
+    /// 人员项目关联
+    /// </summary>
+    public class ItemStaff
+    {
+        public string ID { get; set; }
+        public string ItemNo { get; set; }
+        public string Starttime { get; set; }
+        public string EndTime { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ManagementWindow.BaseClass;
 using ManagementWindow.View;
+using ManagementWindow.ViewModel;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using SQL;
 using System;
@@ -34,7 +35,12 @@ namespace ManagementWindow
         public MainWindow MainWindow { get; set; } = null;
         public Login LoginModel { get; set; } = null;
         public AddPersonnel AddPersonnel { get; set; } = null;
-        public BindingProjectWindow BindingProjectWindow { get; set; } = null;
+        // public BindingProjectWindow BindingProjectWindow { get; set; } = null;
+        public BindingProjectWindowViewModel BindingProjectWindowViewModel { get; set; } = null;
+        public BindingItemViewModel BindingItemViewModel { get; set; } = null;
+        public AddItems AddItems { get; set; } = null;
+        public AddUserWindow AddUserWindow { get; set; } = null;
+        public PersonnelManagement PersonnelManagement { get; set; } = null;
         #endregion
     }
 }

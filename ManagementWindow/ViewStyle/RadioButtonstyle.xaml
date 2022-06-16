@@ -32,7 +32,7 @@
                     <Border x:Name="border" 
                                 BorderThickness="0 0 2 0">
                         <StackPanel Margin="5 0 0 0" Orientation="Horizontal">
-                            <TextBlock FontFamily="../BOS/#iconfont" Text="{TemplateBinding Tag}"
+                            <TextBlock FontFamily="/Does/#iconfont" Text="{TemplateBinding Tag}"
                                            FontSize="25" />
                             <TextBlock Margin="10 0 0 0"  Text="{TemplateBinding Content}"
                                            VerticalAlignment="Center" FontSize="20" />

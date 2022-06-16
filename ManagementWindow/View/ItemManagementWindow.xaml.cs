@@ -1,26 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Input;
-using ManagementWindow.BaseClass;
+﻿using ManagementWindow.BaseClass;
 using ManagementWindow.SQL;
-using ManagementWindow.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace ManagementWindow.View
 {
     /// <summary>
-    /// BindingProjectWindow.xaml 的交互逻辑
+    /// ItemManagementWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class BindingProjectWindow : Window
+    public partial class ItemManagementWindow : UserControl
     {
-        public BindingProjectWindow()
+        public ItemManagementWindow()
         {
             InitializeComponent();
 
             this.Loaded += (e, s) =>
             {
-                List<ItemMes> listmes = SqlAssociated.CmdItemMESGetUI();
+                List<ItemMes> listmes = SqlAssociated.CmdAllItemMESGetUI();
                 lvUsers.ItemsSource = listmes;
 
                 CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvUsers.ItemsSource);
@@ -32,6 +40,7 @@ namespace ManagementWindow.View
                 view.Filter = UserFilter;
             };
         }
+
         private bool UserFilter(object item)
         {
             if (String.IsNullOrEmpty(txtFilter.Text))
@@ -42,15 +51,6 @@ namespace ManagementWindow.View
         private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(lvUsers.ItemsSource).Refresh();
-        }
-
-        private void OnListViewItemDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var vm = this.DataContext as BindingProjectWindowViewModel;
-            vm.DoubleClickBinding(lvUsers.SelectedItem as ItemMes);
-            AppData.Instance.BindingProjectWindowViewModel = vm;
-            this.DialogResult = true;
-            this.Close();
         }
     }
 }

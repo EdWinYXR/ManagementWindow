@@ -1,4 +1,6 @@
-﻿using ManagementWindow.View;
+﻿using ManagementWindow.BaseClass;
+using ManagementWindow.SQL;
+using ManagementWindow.View;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using SQL;
@@ -36,19 +38,52 @@ namespace ManagementWindow.ViewModel
                 {
                     try
                     {
-                        OrCale orCale = new OrCale();
-                        string AddPersonnel = string.Format("Call ProAddStaff({0},{1},{2},{3},{4})", AppData.AddPersonnel.ID.Text,
-                            AppData.AddPersonnel.Name.Text,
-                            AppData.AddPersonnel.Email.Text,
-                            AppData.AddPersonnel.Phone.Text,
-                            AppData.AddPersonnel.Department.Text);
-                       int i= orCale.Change(AddPersonnel);
+                        Staff staff = new Staff
+                        {
+                            ID = AppData.AddPersonnel.ID.Text.Trim().ToString(),
+                            Name = AppData.AddPersonnel.Name.Text.Trim().ToString(),
+                            Email = AppData.AddPersonnel.Email.Text.Trim().ToString(),
+                            Phone = AppData.AddPersonnel.Phone.Text.Trim().ToString(),
+                            Department = AppData.AddPersonnel.Department.Text.ToString(),
+                            grade = AppData.AddPersonnel.grade.Text.ToString(),
+                            ItemNum = "0"
+                        };
+                        int i = SqlAssociated.AddPersonnelFormPersonndelManagement(staff);
                         if (i != 0)
                         {
                             res.Close();
                         }
                     }
                     catch(Exception ex)
+                    {
+                        MessageBox.Show("添加失败：" + ex.Message);
+                    }
+                });
+            }
+        }
+        /// <summary>
+        /// 增加项目信息
+        /// </summary>
+        public RelayCommand<Window> AddItem
+        {
+            get
+            {
+                return new RelayCommand<Window>((res) =>
+                {
+                    try
+                    {
+                        OrCale orCale = new OrCale();
+                        string AddPersonnel = string.Format("Call ProAddStaff({0},{1},{2},{3})", AppData.AddItems.ItemNo.Text,
+                            AppData.AddItems.ItemName.Text,
+                            AppData.AddItems.StartTime.SelectedDate.ToString(),
+                            AppData.AddItems.EndTime.SelectedDate.ToString());
+                        int i = orCale.Change(AddPersonnel);
+                        if (i != 0)
+                        {
+                            res.Close();
+                        }
+                    }
+                    catch (Exception ex)
                     {
                         MessageBox.Show("添加失败：" + ex.Message);
                     }

@@ -58,6 +58,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -93,21 +94,36 @@
     <Compile Include="SQL\ORCALE.cs" />
     <Compile Include="SQL\SqlAssociated.cs" />
     <Compile Include="ViewModel\AddPersonnelViewModel.cs" />
+    <Compile Include="ViewModel\AddUserViewModel.cs" />
+    <Compile Include="ViewModel\BindingItemViewModel.cs" />
     <Compile Include="ViewModel\BindingProjectWindowViewModel.cs" />
     <Compile Include="ViewModel\ControlViewModel.cs" />
     <Compile Include="ViewModel\INIT.cs" />
+    <Compile Include="ViewModel\ItemManagementViewModel.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\PersonnelManagementViewModel.cs" />
     <Compile Include="ViewModel\StaffWindowViewModel.cs" />
+    <Compile Include="View\AddItems.xaml.cs">
+      <DependentUpon>AddItems.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddPersonnel.xaml.cs">
       <DependentUpon>AddPersonnel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddUserWindow.xaml.cs">
+      <DependentUpon>AddUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BindingItemWindow.xaml.cs">
+      <DependentUpon>BindingItemWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BindingProjectWindow.xaml.cs">
       <DependentUpon>BindingProjectWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Control.xaml.cs">
       <DependentUpon>Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ItemManagementWindow.xaml.cs">
+      <DependentUpon>ItemManagementWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ItemWindow.xaml.cs">
       <DependentUpon>ItemWindow.xaml</DependentUpon>
@@ -138,6 +154,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ViewStyle\DatePanelStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewStyle\RadioButtonstyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,7 +166,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddPersonnel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BindingItemWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,6 +189,10 @@
     <Page Include="View\Control.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\ItemManagementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ItemWindow.xaml">
       <SubType>Designer</SubType>
@@ -194,6 +230,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Does\FontAwesome.otf" />
+    <Resource Include="Does\iconfont.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
