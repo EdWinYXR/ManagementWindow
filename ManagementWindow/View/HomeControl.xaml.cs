@@ -1,5 +1,4 @@
-﻿using ManagementWindow.View;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,28 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ManagementWindow
+namespace ManagementWindow.View
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// HomeControl.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HomeControl : UserControl
     {
-        public MainWindow()
+        public HomeControl()
         {
             InitializeComponent();
-
-            AppData.Instance.MainWindow = this;
-
-            this.Loaded += (e, s) =>
-            {
-                AppData.Instance.MainWindow.container.Content = new HomeWindow();
-            };
         }
 
-        private void MobileWindow(object sender, MouseButtonEventArgs e)
+        private void Unwind_MouseDouble(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            AppData.Instance.MainWindow.container.Content = new ItemWindow();
         }
     }
 }

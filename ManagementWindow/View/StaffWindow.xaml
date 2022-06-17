@@ -7,7 +7,7 @@
              d:DataContext="{d:DesignInstance Type=viewmodel:StaffWindowViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"   
-             FontSize="10" FontFamily="{Binding AppData.FontFamilyAll}">
+             FontSize="20" FontFamily="{Binding AppData.FontFamilyAll}">
     <Grid x:Name="grid" Margin="25 0 0 0">
         <ListView Margin="0"    x:Name="Setff" 
                   Foreground="#FF131415" ItemsSource="{Binding}" 

@@ -21,23 +21,32 @@
                 <StackPanel Width="500" Height="50" Orientation="Horizontal" 
                         VerticalAlignment="Top" Margin="0 0 0 0">
                     <TextBlock Text="项 目 号 ：" VerticalAlignment="Center" FontSize="25"/>
-                    <TextBox x:Name="ItemNo" Height="40" FontSize="25" Width="300"/>
+                    <TextBox x:Name="ItemNo" Height="40" FontSize="23" Width="300"/>
                 </StackPanel>
                 <StackPanel Width="500" Height="50" Orientation="Horizontal" 
                         VerticalAlignment="Top" Margin="0 0 0 0">
                     <TextBlock Text="项目名称：" VerticalAlignment="Center" FontSize="25"/>
-                    <TextBox x:Name="ItemName" Height="40" FontSize="25" Width="300"/>
+                    <TextBox x:Name="ItemName" Height="40" FontSize="23" Width="300"/>
                 </StackPanel>
                 <StackPanel Width="500" Height="50" Orientation="Horizontal" 
                         VerticalAlignment="Top" Margin="0 0 0 0">
                     <TextBlock Text="开始时间：" VerticalAlignment="Center" FontSize="25"/>
-                    <DatePicker x:Name="StartTime" Height="40" FontSize="25" Width="300"/>
+                    <DatePicker x:Name="StartTime" Height="40" FontSize="23" Width="300"/>
                 </StackPanel>
                 <StackPanel Width="500" Height="50" Orientation="Horizontal" 
                         VerticalAlignment="Top" Margin="0 0 0 0">
                     <TextBlock Text="结束时间：" VerticalAlignment="Center" FontSize="25"/>
-                    <DatePicker x:Name="EndTime" Height="40" FontSize="25" Width="300"/>
+                    <DatePicker x:Name="EndTime" Height="40" FontSize="23" Width="300"/>
                 </StackPanel>
+                <StackPanel Width="500" Height="50" Orientation="Horizontal" 
+                        VerticalAlignment="Top" Margin="0 0 0 0">
+                <TextBlock Text="部       门：" VerticalAlignment="Center" FontSize="25"/>
+                <ComboBox x:Name="Department"  FontSize="23" Width="300">
+                    <ComboBoxItem IsSelected="True">自动化</ComboBoxItem>
+                    <ComboBoxItem >智能</ComboBoxItem>
+                    <ComboBoxItem>弘享</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">

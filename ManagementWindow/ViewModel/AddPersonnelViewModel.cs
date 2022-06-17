@@ -14,7 +14,7 @@ using System.Windows.Controls;
 
 namespace ManagementWindow.ViewModel
 {
-   public  class AddPersonnelViewModel : ObservableObject
+    public class AddPersonnelViewModel : ObservableObject
     {
         public AppData AppData = AppData.Instance;
         public RelayCommand<Window> CloseWindow
@@ -54,7 +54,7 @@ namespace ManagementWindow.ViewModel
                             res.Close();
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         MessageBox.Show("添加失败：" + ex.Message);
                     }
@@ -72,12 +72,15 @@ namespace ManagementWindow.ViewModel
                 {
                     try
                     {
-                        OrCale orCale = new OrCale();
-                        string AddPersonnel = string.Format("Call ProAddStaff({0},{1},{2},{3})", AppData.AddItems.ItemNo.Text,
-                            AppData.AddItems.ItemName.Text,
-                            AppData.AddItems.StartTime.SelectedDate.ToString(),
-                            AppData.AddItems.EndTime.SelectedDate.ToString());
-                        int i = orCale.Change(AddPersonnel);
+                        ItemMes item = new ItemMes
+                        {
+                            ItemNo = AppData.AddItems.ItemNo.Text,
+                            ItemName = AppData.AddItems.ItemName.Text,
+                            StartTime = (AppData.AddItems.StartTime.SelectedDate ?? DateTime.Now).ToString("yyyy/MM/dd"),
+                            EndTime = (AppData.AddItems.StartTime.SelectedDate ?? DateTime.Now).ToString("yyyy/MM/dd"),
+                            Department = ConversionCombox(AppData.AddItems.Department.Text)
+                        };
+                        int i = SqlAssociated.AddItemsFromAddPersonnelViewModel(item);
                         if (i != 0)
                         {
                             res.Close();
@@ -89,6 +92,21 @@ namespace ManagementWindow.ViewModel
                     }
                 });
             }
+        }
+
+
+        public int ConversionCombox(string com)
+        {
+            switch (com)
+            {
+                case "自动化":
+                    return 1;
+                case "智能":
+                    return 2;
+                case "弘享":
+                    return 3;
+            }
+            return 1;
         }
     }
 }

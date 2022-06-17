@@ -81,13 +81,17 @@ namespace ManagementWindow.ViewModel
                                         sta,
                                        end);
                                 OrCale orCale = new OrCale();
-                                orCale.Change(Binding);
+                              int i=  orCale.Change(Binding);
+                                if (i != 0)
+                                {
+                                    AppData.MainWindow.container.Content = new PersonnelManagement();
+                                }
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        string s = ex.Message;
+                        MessageBox.Show("绑定失败：" + ex.Message);
                     }
                 });
             }

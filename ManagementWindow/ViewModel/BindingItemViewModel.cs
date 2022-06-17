@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using ManagementWindow.BaseClass;
 using ManagementWindow.SQL;
+using ManagementWindow.View;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ManagementWindow.ViewModel
@@ -20,7 +18,11 @@ namespace ManagementWindow.ViewModel
         public DateTime? Starttime { get => starttime; set => SetProperty(ref starttime, value); }
         private DateTime? endtime;
         public DateTime? Endtime { get => endtime; set => SetProperty(ref endtime, value); }
-
+        /// <summary>
+        /// 双击事件
+        /// </summary>
+        /// <param name="staff">选中的行</param>
+        /// <param name="ItemNo">项目号</param>
         public void DoubleClickBinding(Staff staff, string ItemNo)
         {
             ItemStaff itemStaff = new ItemStaff
@@ -36,7 +38,8 @@ namespace ManagementWindow.ViewModel
                 int i = SqlAssociated.AddItemStaffFromBindingItemWindow(itemStaff);
                 if (i != 0)
                 {
-                   if( MessageBox.Show(string.Format("绑定成功，是否自动发送邮件通知{0}",staff.Name),"提示",
+                    AppData.MainWindow.container.Content = new ItemManagementWindow();
+                   if ( MessageBox.Show(string.Format("绑定成功，是否自动发送邮件通知{0}",staff.Name),"提示",
                         MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         string emailText = string.Format("此为系统邮件请勿回复————————————————————" + Environment.NewLine +

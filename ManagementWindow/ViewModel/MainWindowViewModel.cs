@@ -58,7 +58,8 @@ namespace ManagementWindow.ViewModel
                     switch (res.Content)
                     {
                         case "首页":
-                           AppData.MainWindow.container.Content=new  ItemWindow(); 
+                            //AppData.MainWindow.container.Content=new  ItemWindow(); 
+                            AppData.MainWindow.container.Content = new HomeWindow();
                             break;
                         case "员工信息":
                            AppData.MainWindow.container.Content=new  StaffWindow(); 

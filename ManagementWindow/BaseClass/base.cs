@@ -41,6 +41,8 @@ namespace ManagementWindow.BaseClass
         public string EndTime { get; set; }
         public string ItemState { get; set; }
         public string Participants { get; set; }
+
+        public int Department { get; set; } 
     }
     /// <summary>
     /// 人员项目关联

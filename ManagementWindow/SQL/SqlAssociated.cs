@@ -294,5 +294,17 @@ namespace ManagementWindow.SQL
             }
             return i;
         }
+
+        public static int AddItemsFromAddPersonnelViewModel(ItemMes item)
+        {
+
+            string Additems = string.Format("INSERT INTO \"ItemManagement\"(\"ItemNo\",\"ItemName\",\"StartTime\",\"EndTime\",\"Department\") VALUES('{0}','{1}','{2}','{3}','{4}')",
+                           item.ItemNo,
+                          item.ItemName,
+                           item.StartTime,
+                          item.EndTime,
+                           item.Department) ;
+            return orCale.Change(Additems);
+        }
     }
 }

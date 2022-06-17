@@ -6,7 +6,7 @@
     xmlns:ViewModel="clr-namespace:ManagementWindow.ViewModel" d:DataContext="{d:DesignInstance Type={x:Type ViewModel:MainWindowViewModel}}" x:Class="ManagementWindow.MainWindow"
         mc:Ignorable="d"
         FontFamily="{Binding AppData.FontFamilyAll}"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="650" Width="1000"
         WindowStyle="None"
         AllowsTransparency="True"
     Background="#FF5F5F65" MouseLeftButtonDown="MobileWindow">
