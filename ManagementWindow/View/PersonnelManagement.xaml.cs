@@ -1,5 +1,6 @@
 ﻿using ManagementWindow.BaseClass;
 using ManagementWindow.SQL;
+using ManagementWindow.ViewModel;
 using System;
 using System.ComponentModel;
 using System.Windows.Controls;
@@ -21,7 +22,7 @@ namespace ManagementWindow.View
             this.Loaded += (e, s) =>
             {
    
-                lvUsers.ItemsSource = SqlAssociated.CmdAllPersonndelGetUI();
+                lvUsers.ItemsSource = SqlAssociated.CmdAllPersonndelGetUI("","");
 
                 CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvUsers.ItemsSource);
                 PropertyGroupDescription groupDescription = new PropertyGroupDescription("Department");
@@ -47,6 +48,20 @@ namespace ManagementWindow.View
         private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(lvUsers.ItemsSource).Refresh();
+        }
+
+        private void starte_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var vm = this.DataContext as PersonnelManagementViewModel;
+            lvUsers.ItemsSource = vm.SelectedDateChanged();
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvUsers.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Department");
+            view.GroupDescriptions.Add(groupDescription);
+            //排序
+            view.SortDescriptions.Add(new SortDescription("ItemNum", ListSortDirection.Ascending));
+            //搜索
+            view.Filter = UserFilter;
         }
     }
 }

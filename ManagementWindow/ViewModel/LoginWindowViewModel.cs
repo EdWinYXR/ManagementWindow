@@ -1,20 +1,18 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Net;
 using SQL;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace ManagementWindow.ViewModel
 {
     public class LoginWindowViewModel : ObservableObject
     {
+        public LoginWindowViewModel()
+        {
+
+        }
         public AppData AppData { get; set; } = AppData.Instance;
         /// <summary>
         /// 登录
@@ -38,6 +36,7 @@ namespace ManagementWindow.ViewModel
                         AppData.CurrentUser.level = ConverterLevel(data.Tables[0].Rows[0].Field<decimal>("Level"));
                         MainWindow mainWindow = new MainWindow();
                         mainWindow.Show();
+                        CNetLog.Instance.WriteLog( "Open System started successfully");
                         res.Close();
                     }
                     else

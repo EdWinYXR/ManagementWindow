@@ -4,6 +4,8 @@ using ManagementWindow.SQL;
 using ManagementWindow.View;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Net;
+using BaseClass.Tool;
 
 namespace ManagementWindow.ViewModel
 {
@@ -38,6 +40,8 @@ namespace ManagementWindow.ViewModel
                     {
                         CurrentUser = SqlAssociated.CmdAllUserGetAddUserWindow();
                         AppData.MainWindow.container.Content = new AddUserWindow();
+
+                        CNetLog.Instance.WriteLog("Add User：" + JsonHelper<CurrentUser>.GetJsonStr(us));
                     }
                 });
             }

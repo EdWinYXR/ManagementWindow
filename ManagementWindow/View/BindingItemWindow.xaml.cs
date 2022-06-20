@@ -28,7 +28,7 @@ namespace ManagementWindow.View
         {
             InitializeComponent();
             ItemNo = ItemNowin;
-            lvUsers.ItemsSource = SqlAssociated.CmdAllPersonndelGetUI();
+            lvUsers.ItemsSource = SqlAssociated.CmdAllPersonndelGetUI("","");
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvUsers.ItemsSource);
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("Department");
@@ -74,8 +74,6 @@ namespace ManagementWindow.View
                 CollectionViewSource.GetDefaultView(lvUsers.ItemsSource).Refresh();
             }
         }
-
-
         private void OnListViewItemDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var vm = this.DataContext as BindingItemViewModel;
@@ -84,6 +82,19 @@ namespace ManagementWindow.View
             AppData.Instance.BindingItemViewModel = vm;
             this.DialogResult = true;
             this.Close();
+        }
+        private void starte_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var vm = this.DataContext as BindingItemViewModel;
+            lvUsers.ItemsSource = vm.SelectedDateChanged();
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvUsers.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Department");
+            view.GroupDescriptions.Add(groupDescription);
+            //排序
+            view.SortDescriptions.Add(new SortDescription("ItemNum", ListSortDirection.Ascending));
+            //搜索
+            view.Filter = UserFilter;
         }
     }
 }

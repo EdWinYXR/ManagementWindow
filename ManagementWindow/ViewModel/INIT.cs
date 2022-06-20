@@ -1,17 +1,13 @@
-﻿using SQL;
+﻿using Net;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ManagementWindow.ViewModel
 {
-    public class Init
+    public class InIt
     {
-        public Init()
+        public InIt()
         {
-
+            CNetLog.Instance.Init(AppDomain.CurrentDomain.BaseDirectory);
         }
     }
 }

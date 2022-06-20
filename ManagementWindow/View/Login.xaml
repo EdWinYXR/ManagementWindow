@@ -4,12 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManagementWindow.View"
-        xmlns:ViewModel="clr-namespace:ManagementWindow.ViewModel" x:Class="ManagementWindow.View.Login"
+        xmlns:ViewModel="clr-namespace:ManagementWindow.ViewModel" 
+        x:Class="ManagementWindow.View.Login"
         Title="Login" Height="450" Width="800"
         FontFamily="{Binding AppData.FontFamilyAll}">
     <Window.DataContext>
         <ViewModel:LoginWindowViewModel/>
     </Window.DataContext>
+
     <Grid>
         <Image Source="../Images/ground.png" HorizontalAlignment="Stretch" Stretch="UniformToFill"/>
         <Grid  >
@@ -50,7 +52,7 @@
                     <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center"
                             Height="80" VerticalAlignment="Top">
                         <Button Command="{Binding LoginCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
-                            FontSize="20"  Height="40" Width="150" Content="登录">
+                            FontSize="20"  Height="40" Width="150" Content="登录" IsDefault="True">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                                     <GradientStop Color="#FF4661AE" Offset="0"/>

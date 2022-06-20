@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -7,6 +8,8 @@ using ManagementWindow.BaseClass;
 using ManagementWindow.SQL;
 using ManagementWindow.View;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Net;
+using BaseClass.Tool;
 
 namespace ManagementWindow.ViewModel
 {
@@ -18,6 +21,24 @@ namespace ManagementWindow.ViewModel
         public DateTime? Starttime { get => starttime; set => SetProperty(ref starttime, value); }
         private DateTime? endtime;
         public DateTime? Endtime { get => endtime; set => SetProperty(ref endtime, value); }
+        /// <summary>
+        /// 选择时间
+        /// </summary>
+        /// <returns></returns>
+        public List<Staff> SelectedDateChanged()
+        {
+            string sta = "";
+            string end = "";
+            if (Starttime != null)
+            {
+                sta = ((DateTime)Starttime).ToString("yyyy/MM/dd");
+            }
+            if (Endtime != null)
+            {
+                end = ((DateTime)Endtime).ToString("yyyy/MM/dd");
+            }
+            return SqlAssociated.CmdAllPersonndelGetUI(Starttime.ToString() ?? "", Endtime.ToString() ?? "") ;
+        }
         /// <summary>
         /// 双击事件
         /// </summary>
@@ -39,6 +60,9 @@ namespace ManagementWindow.ViewModel
                 if (i != 0)
                 {
                     AppData.MainWindow.container.Content = new ItemManagementWindow();
+
+                    CNetLog.Instance.WriteLog("BindingItem ：" + JsonHelper<ItemStaff>.GetJsonStr(itemStaff));
+
                    if ( MessageBox.Show(string.Format("绑定成功，是否自动发送邮件通知{0}",staff.Name),"提示",
                         MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
@@ -53,7 +77,14 @@ namespace ManagementWindow.ViewModel
                         if (bo)
                         {
                             MessageBox.Show("发送成功");
+                            CNetLog.Instance.WriteLog("Send Email Success");
                         }
+                        else
+                        {
+                            MessageBox.Show("发送失败，请联系管理人员确认！");
+                        }
+
+                        
                     }
                 }
             }
@@ -112,6 +143,7 @@ namespace ManagementWindow.ViewModel
             }
             catch (System.Net.Mail.SmtpException ex)
             {
+                CNetLog.Instance.WriteLog("Send Email Fail Because ：" + ex.Message);
                 return false;
             }
             return true;

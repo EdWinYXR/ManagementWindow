@@ -6,14 +6,40 @@ using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using SQL;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using Net;
+using BaseClass.Tool;
 
 namespace ManagementWindow.ViewModel
 {
     public class PersonnelManagementViewModel : ObservableObject
     {
         public AppData AppData { get; set; } = AppData.Instance;
+
+        private DateTime? starttime;
+        public DateTime? Starttime { get => starttime; set => SetProperty(ref starttime, value); }
+        private DateTime? endtime;
+        public DateTime? Endtime { get => endtime; set => SetProperty(ref endtime, value); }
+        /// <summary>
+        /// 选择时间
+        /// </summary>
+        /// <returns></returns>
+        public List<Staff> SelectedDateChanged()
+        {
+            string sta = "";
+            string end = "";
+            if (Starttime != null)
+            {
+                sta = ((DateTime)Starttime).ToString("yyyy/MM/dd");
+            }
+            if (Endtime != null)
+            {
+                end = ((DateTime)Endtime).ToString("yyyy/MM/dd");
+            }
+            return SqlAssociated.CmdAllPersonndelGetUI(sta,end);
+        }
         public RelayCommand<ListView> DeletePersonnel
         {
             get
@@ -27,6 +53,7 @@ namespace ManagementWindow.ViewModel
                         if (i != 0)
                         {
                             AppData.MainWindow.container.Content = new PersonnelManagement();
+                            CNetLog.Instance.WriteLog("DeletePersonnel：" + JsonHelper<Staff>.GetJsonStr(staff));
                         }
                     }
                     else
@@ -48,7 +75,9 @@ namespace ManagementWindow.ViewModel
                 });
             }
         }
-
+        /// <summary>
+        /// 绑定人员
+        /// </summary>
         public RelayCommand<ListView> BindingProject
         {
             get
@@ -63,13 +92,13 @@ namespace ManagementWindow.ViewModel
                         {
                             string sta = DateTime.Now.ToString("yyyy/MM/dd");
                             string end = DateTime.Now.ToString("yyyy/MM/dd");
-                            if (AppData.PersonnelManagement.starte.SelectedDate != null)
+                            if (Starttime != null)
                             {
-                                sta = ((DateTime)AppData.PersonnelManagement.starte.SelectedDate).ToString("yyyy/MM/dd");
+                                sta = ((DateTime)Starttime).ToString("yyyy/MM/dd");
                             }
-                            if (AppData.PersonnelManagement.end.SelectedDate != null)
+                            if (Endtime != null)
                             {
-                                end = ((DateTime)AppData.PersonnelManagement.end.SelectedDate).ToString("yyyy/MM/dd");
+                                end = ((DateTime)Endtime).ToString("yyyy/MM/dd");
                             }
                             if (
                             MessageBox.Show(string.Format("请确认绑定时间为{0}--{1}", sta, end),
@@ -86,15 +115,20 @@ namespace ManagementWindow.ViewModel
                                 {
                                     AppData.MainWindow.container.Content = new PersonnelManagement();
                                 }
+
+                                CNetLog.Instance.WriteLog("BindingProject："+ JsonHelper<Staff>.GetJsonStr(staff));
                             }
                         }
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("绑定失败：" + ex.Message);
+                        CNetLog.Instance.WriteLog("BindingProject Fill Because ："+ex.Message);
                     }
                 });
             }
         }
+
+
     }
 }

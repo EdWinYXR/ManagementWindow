@@ -2,20 +2,15 @@
 using ManagementWindow.View;
 using ManagementWindow.ViewModel;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using SQL;
+using Net;
 using System;
-using System.Collections.Generic;
-using System.Data.Linq;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using System.IO;
 
 namespace ManagementWindow
 {
     public class AppData : ObservableObject
     {
-        public AppData()
+        public  AppData()
         {
             FontFamilyAll = "黑体";
         }

@@ -1,8 +1,10 @@
 ﻿using ManagementWindow.View;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,11 +27,16 @@ namespace ManagementWindow
         {
             InitializeComponent();
 
-            AppData.Instance.MainWindow = this;
+           // AppData.Instance.MainWindow = this;
 
             this.Loaded += (e, s) =>
             {
                 AppData.Instance.MainWindow.container.Content = new HomeWindow();
+            };
+            this.Closing+=(e, s)=>
+            {
+                Thread.Sleep(100);//等待系统保存内容
+                Process.GetCurrentProcess().Kill();
             };
         }
 

@@ -1,16 +1,11 @@
 ﻿using ManagementWindow.BaseClass;
 using ManagementWindow.SQL;
-using ManagementWindow.View;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using SQL;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
+using Net;
+using BaseClass.Tool;
 
 namespace ManagementWindow.ViewModel
 {
@@ -52,6 +47,8 @@ namespace ManagementWindow.ViewModel
                         if (i != 0)
                         {
                             res.Close();
+
+                            CNetLog.Instance.WriteLog("AddPersonndelManagement：" + JsonHelper<Staff>.GetJsonStr(staff));
                         }
                     }
                     catch (Exception ex)
@@ -84,6 +81,8 @@ namespace ManagementWindow.ViewModel
                         if (i != 0)
                         {
                             res.Close();
+
+                            CNetLog.Instance.WriteLog("AddItem ：" + JsonHelper<ItemMes>.GetJsonStr(item));
                         }
                     }
                     catch (Exception ex)

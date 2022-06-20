@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using ManagementWindow.ViewModel;
+using System.Windows;
 
 namespace ManagementWindow.View
 {
@@ -9,10 +10,12 @@ namespace ManagementWindow.View
     {
         public Login()
         {
+           _= new InIt();
+
             InitializeComponent();
 
             AppData.Instance.LoginModel = this;
-        }
 
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace ManagementWindow.View
 
             this.Loaded += (e, s) =>
             {
-                this.Setff.DataContext = SqlAssociated.CmdAllPersonndelGetUI();
+                this.Setff.DataContext = SqlAssociated.CmdAllPersonndelGetUI("","") ;
                 //ObservableCollection<object> ObservableObj = new ObservableCollection<object>();
                 //ObservableObj.Add(new { ID = 1, Name = "Alex1", ItemNum = "男", Email = 10 , Phone =1111,});
                 //this.listSetff.DataContext = ObservableObj;

@@ -10,6 +10,8 @@ using ManagementWindow.SQL;
 using ManagementWindow.View;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Net;
+using BaseClass.Tool;
 
 namespace ManagementWindow.ViewModel
 {
@@ -29,6 +31,8 @@ namespace ManagementWindow.ViewModel
                         if (i != 0)
                         {
                             AppData.MainWindow.container.Content = new ItemManagementWindow();
+
+                            CNetLog.Instance.WriteLog("DeleteItems ：" + JsonHelper<ItemMes>.GetJsonStr(mes));
                         }
                     }
                     else

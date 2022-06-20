@@ -25,9 +25,11 @@
                        Background="White"  Margin="0,0,0,10"/>-->
             <StackPanel Grid.Column="1" Orientation="Horizontal">
                 <DatePicker    x:Name="starte"   Tag="开始时间" 
-                       Margin="5 0 0 10" Style="{DynamicResource DatePickerStyle1}"/>
+                       Margin="5 0 0 10" Style="{DynamicResource DatePickerStyle1}"
+                              SelectedDate="{Binding Starttime}" SelectedDateChanged="starte_SelectedDateChanged"/>
                 <DatePicker   x:Name="end"   Tag="结束时间" 
-                       Margin="5 0 0 10" Style="{DynamicResource DatePickerStyle1}"/>
+                       Margin="5 0 0 10" Style="{DynamicResource DatePickerStyle1}"
+                              SelectedDate="{Binding Endtime}" SelectedDateChanged="starte_SelectedDateChanged"/>
             </StackPanel>
         </Grid>
         <ListView x:Name="lvUsers" >
