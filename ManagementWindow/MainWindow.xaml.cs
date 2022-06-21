@@ -27,7 +27,7 @@ namespace ManagementWindow
         {
             InitializeComponent();
 
-           // AppData.Instance.MainWindow = this;
+            AppData.Instance.MainWindow = this;
 
             this.Loaded += (e, s) =>
             {
@@ -43,6 +43,11 @@ namespace ManagementWindow
         private void MobileWindow(object sender, MouseButtonEventArgs e)
         {
             DragMove();
+        }
+
+        private void mouseShow_MouseLeave(object sender, MouseEventArgs e)
+        {
+            mouseShow.Visibility = Visibility.Hidden;
         }
     }
 }

@@ -54,4 +54,18 @@ namespace ManagementWindow.BaseClass
         public string Starttime { get; set; }
         public string EndTime { get; set; }
     }
+    /// <summary>
+    /// 人员信息关联项目
+    /// </summary>
+    public class ShowPersonnelManage
+    {
+        public string Name { get; set; }
+        public string ID { get; set; }
+        public string StarTime { get; set; }
+        public string EndTime { get; set; }
+        public string grade { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Department { get; set; }
+    }
 }

@@ -36,6 +36,7 @@ namespace ManagementWindow
         public AddItems AddItems { get; set; } = null;
         public AddUserWindow AddUserWindow { get; set; } = null;
         public PersonnelManagement PersonnelManagement { get; set; } = null;
+        public ControlViewModel ControlViewModel { get; set; } = null;
         #endregion
     }
 }

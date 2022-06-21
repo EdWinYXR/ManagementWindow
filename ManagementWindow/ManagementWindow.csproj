@@ -110,6 +110,7 @@
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\PersonnelManagementViewModel.cs" />
+    <Compile Include="ViewModel\ShowPersonnelViewModel.cs" />
     <Compile Include="ViewModel\StaffWindowViewModel.cs" />
     <Compile Include="View\AddItems.xaml.cs">
       <DependentUpon>AddItems.xaml</DependentUpon>
@@ -146,6 +147,9 @@
     </Compile>
     <Compile Include="View\PersonnelManagement.xaml.cs">
       <DependentUpon>PersonnelManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShowPersonnelWindow.xaml.cs">
+      <DependentUpon>ShowPersonnelWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StaffWindow.xaml.cs">
       <DependentUpon>StaffWindow.xaml</DependentUpon>
@@ -232,6 +236,10 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="View\PersonnelManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ShowPersonnelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -83,8 +83,6 @@ namespace ManagementWindow.ViewModel
                         {
                             MessageBox.Show("发送失败，请联系管理人员确认！");
                         }
-
-                        
                     }
                 }
             }

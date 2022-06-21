@@ -400,5 +400,79 @@ namespace ManagementWindow.SQL
             }
             return 0;
         }
+
+        public static List<ShowPersonnelManage> CmdItemsStaffGetControl()
+        {
+            try
+            {
+                List<ShowPersonnelManage> listshow = new List<ShowPersonnelManage>();
+                string cmdall = "SELECT * FROM \"ItemStaffAll\"";
+                DataSet data = orCale.Query(cmdall);
+                if (data.Tables[0].Rows.Count != 0)
+                {
+                    foreach (DataRow row in data.Tables[0].Rows)
+                    {
+                        ShowPersonnelManage show = new ShowPersonnelManage();
+                        if (row["Name"] != null)
+                        {
+                            show.Name = row["Name"].ToString();
+                        }
+                        if (row["ID"] != null)
+                        {
+                            show.ID = row["ID"].ToString();
+                        }
+                        if (row["StarTime"] != null)
+                        {
+                            show.StarTime = row["StarTime"].ToString();
+                        }
+                        if (row["EndTime"] != null)
+                        {
+                            show.EndTime = row["EndTime"].ToString();
+                        }
+                        if (row["Email"] != null)
+                        {
+                            show.Email = row["Email"].ToString();
+                        }
+                        if (row["Phone"] != null)
+                        {
+                            show.Phone = row["Phone"].ToString();
+                        }
+                        if (row["grade"] != null)
+                        {
+                            switch (row["grade"])
+                            {
+                                case 1:
+                                    show.grade = "一级";
+                                    break;
+                                case 2:
+                                    show.grade = "二级";
+                                    break;
+                                case 3:
+                                    show.grade = "三级";
+                                    break;
+                                case 4:
+                                    show.grade = "四级";
+                                    break;
+                                case 5:
+                                    show.grade = "五级";
+                                    break;
+                            }
+                        }
+                        if (row["Department"] != null)
+                        {
+                            show.Department = row["Department"].ToString();
+                        }
+
+                        listshow.Add(show);
+                    }
+                }
+                return listshow;
+            }
+            catch (Exception ex)
+            {
+                CNetLog.Instance.WriteLog(MethodBase.GetCurrentMethod().Name + ",FAIL Because：" + ex.Message);
+            }
+            return null;
+        }
     }
 }
