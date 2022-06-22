@@ -6,76 +6,112 @@
              xmlns:local="clr-namespace:ManagementWindow.View"
              xmlns:hc="https://handyorg.github.io/handycontrol" 
              xmlns:ViewModel="clr-namespace:ManagementWindow.ViewModel" 
+             xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              x:Class="ManagementWindow.View.PersonnelManagement"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              FontFamily="{Binding AppData.FontFamilyAll}"
-             FontSize="20">
+             FontSize="20"
+             x:Name="win">
     <UserControl.DataContext>
         <ViewModel:PersonnelManagementViewModel/>
     </UserControl.DataContext>
-    <DockPanel Margin="20 0 5 0">
-        <Grid DockPanel.Dock="Top" Panel.ZIndex="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBox  Margin="0,0,0,10" x:Name="txtFilter" TextChanged="txtFilter_TextChanged" />
-            <!--<Button x:Name="button" Content="12121" Grid.Column="1" HorizontalAlignment="Center"  
+    <Grid Margin="20 0 5 5">
+        <DockPanel >
+            <Grid DockPanel.Dock="Top" Panel.ZIndex="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox  Margin="0,0,0,10" x:Name="txtFilter" TextChanged="txtFilter_TextChanged" />
+                <!--<Button x:Name="button" Content="12121" Grid.Column="1" HorizontalAlignment="Center"  
                        Background="White"  Margin="0,0,0,10"/>-->
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <DatePicker    x:Name="starte"   Tag="开始时间" 
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <DatePicker    x:Name="starte"   Tag="开始时间" 
                        Margin="5 0 0 10" Style="{DynamicResource DatePickerStyle1}"
                               SelectedDate="{Binding Starttime}" SelectedDateChanged="starte_SelectedDateChanged"/>
-                <DatePicker   x:Name="end"   Tag="结束时间" 
+                    <DatePicker   x:Name="end"   Tag="结束时间" 
                        Margin="5 0 0 10" Style="{DynamicResource DatePickerStyle1}"
                               SelectedDate="{Binding Endtime}" SelectedDateChanged="starte_SelectedDateChanged"/>
-            </StackPanel>
-        </Grid>
-        <ListView x:Name="lvUsers" >
-            <ListView.ContextMenu >
-                <ContextMenu>
-                    <MenuItem Header="绑定项目" Command="{Binding BindingProject}" CommandParameter="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}, Mode=FindAncestor}}"/>
-                    <MenuItem Header="添加员工" Command="{Binding AddPersonnel}"/>
-                    <MenuItem Header="删除" Command="{Binding DeletePersonnel}" CommandParameter="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}, Mode=FindAncestor}}"/>
-                </ContextMenu>
-            </ListView.ContextMenu>
-            <ListView.View >
-                <GridView >
-                    <GridViewColumn  Header="工号"  DisplayMemberBinding="{Binding ID}" />
-                    <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="电话"  DisplayMemberBinding="{Binding Phone}" />
-                    <GridViewColumn Header="邮件"  DisplayMemberBinding="{Binding Email}" />
-                    <GridViewColumn Header="项目数"  DisplayMemberBinding="{Binding ItemNum}" />
-                    <GridViewColumn Header="等级"  DisplayMemberBinding="{Binding grade}" />
-                    <GridViewColumn Header="部门"  DisplayMemberBinding="{Binding Department}" />
-                </GridView>
-            </ListView.View>
+                </StackPanel>
+            </Grid>
+            <ListView x:Name="lvUsers" SelectionChanged="lvUsers_SelectionChanged">
+                <ListView.ContextMenu >
+                    <ContextMenu>
+                        <MenuItem Header="绑定项目" Command="{Binding BindingProject}" CommandParameter="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}, Mode=FindAncestor}}"/>
+                        <MenuItem Header="添加员工" Command="{Binding AddPersonnel}"/>
+                        <MenuItem Header="删除" Command="{Binding DeletePersonnel}" CommandParameter="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}, Mode=FindAncestor}}"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+                <ListView.View >
+                    <GridView >
+                        <GridViewColumn  Header="工号"  DisplayMemberBinding="{Binding ID}" />
+                        <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="电话"  DisplayMemberBinding="{Binding Phone}" />
+                        <GridViewColumn Header="邮件"  DisplayMemberBinding="{Binding Email}" />
+                        <GridViewColumn Header="项目数"  DisplayMemberBinding="{Binding ItemNum}" />
+                        <GridViewColumn Header="等级"  DisplayMemberBinding="{Binding grade}" />
+                        <GridViewColumn Header="部门"  DisplayMemberBinding="{Binding Department}" />
+                    </GridView>
+                </ListView.View>
+                <ListView.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <Expander IsExpanded="True">
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="Gray" FontSize="22" VerticalAlignment="Bottom" />
+                                                        <TextBlock Text="{Binding ItemCount}" FontSize="20" Foreground="Green" FontWeight="Bold" FontStyle="Italic" Margin="10,0,0,0" VerticalAlignment="Bottom" />
+                                                        <!--<TextBlock Text=" item(s)" FontSize="20" Foreground="Silver" FontStyle="Italic" VerticalAlignment="Bottom" />-->
+                                                    </StackPanel>
+                                                </Expander.Header>
+                                                <ItemsPresenter />
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </ListView.GroupStyle>
+            </ListView>
+        </DockPanel>
 
-            <ListView.GroupStyle>
-                <GroupStyle>
-                    <GroupStyle.ContainerStyle>
-                        <Style TargetType="{x:Type GroupItem}">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate>
-                                        <Expander IsExpanded="True">
-                                            <Expander.Header>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="Gray" FontSize="22" VerticalAlignment="Bottom" />
-                                                    <TextBlock Text="{Binding ItemCount}" FontSize="20" Foreground="Green" FontWeight="Bold" FontStyle="Italic" Margin="10,0,0,0" VerticalAlignment="Bottom" />
-                                                    <!--<TextBlock Text=" item(s)" FontSize="20" Foreground="Silver" FontStyle="Italic" VerticalAlignment="Bottom" />-->
-                                                </StackPanel>
-                                            </Expander.Header>
-                                            <ItemsPresenter />
-                                        </Expander>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </GroupStyle.ContainerStyle>
-                </GroupStyle>
-            </ListView.GroupStyle>
-        </ListView>
-    </DockPanel>
+        <Grid x:Name="grid" Height="200" VerticalAlignment="Bottom" Visibility="Hidden"
+              Background="White">
+            <Button x:Name="button" Tag="CloseWindow" Margin="2" Width="40" Height="36" 
+                    BorderBrush="Transparent" Background="Transparent"
+                    VerticalAlignment="Top"
+                    Style="{DynamicResource ButtonStyle}" 
+                    HorizontalAlignment="Right"
+                   Click="button_Click"
+                    Panel.ZIndex="2">
+                <Button.Content>
+                    <Path Width="30" Height="30" Stroke="#FFB7B2B2"  StrokeThickness="3">
+                        <Path.Data>
+                            M20,10 L10,20 M10,10 L20,20
+                        </Path.Data>
+                    </Path>
+                </Button.Content>
+            </Button>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <wpf:CartesianChart x:Name="LineChart" Series="{Binding LineSeries}" AxisX="{Binding XAxisX}">
+                    <wpf:CartesianChart.AxisY>
+                        <wpf:Axis  ShowLabels="True" Labels="0,1" MinValue="0" MaxValue="1">
+                        </wpf:Axis>
+                    </wpf:CartesianChart.AxisY>
+                </wpf:CartesianChart>
+                <wpf:PieChart Grid.Column="1" InnerRadius="50" Series="{Binding PieSeries}" LegendLocation="Top">
+                </wpf:PieChart>
+            </Grid>
+        </Grid>
+    </Grid>
 </UserControl>

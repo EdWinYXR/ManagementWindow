@@ -17,7 +17,7 @@
     <UserControl.Effect>
         <DropShadowEffect Color="#FF030303" BlurRadius="5" ShadowDepth="7"/>
     </UserControl.Effect>
-    <Grid Margin="0 10 10 0" >
+    <Grid Margin="10 10 20 0" >
         <Canvas Background="White" Opacity="0.2" />
         <!--<Canvas.Clip>
                 <RectangleGeometry RadiusY="20" RadiusX="20" Rect="0,0,190,240"/>

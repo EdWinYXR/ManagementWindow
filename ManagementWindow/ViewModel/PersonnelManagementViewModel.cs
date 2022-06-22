@@ -11,6 +11,8 @@ using System.Windows;
 using System.Windows.Controls;
 using Net;
 using BaseClass.Tool;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace ManagementWindow.ViewModel
 {
@@ -129,6 +131,118 @@ namespace ManagementWindow.ViewModel
             }
         }
 
+        #region 图表
+        /// <summary>
+        /// 曲线图定义
+        /// </summary>
+        public SeriesCollection LineSeries { get; set; } = new SeriesCollection();
+        public SeriesCollection PieSeries { get; set; } = new SeriesCollection();
+        public List<ShowPersonnelManage> mes { get; set; } = SqlAssociated.CmdItemsStaffGetControl();
+        /// <summary>
+        /// X轴定义
+        /// </summary>
+        public AxesCollection XAxisX { get; set; } = new AxesCollection();
 
+        //private IChartValues oNTime = new ChartValues<double>();
+        //private IChartValues oFFTime = new ChartValues<double>();
+        //public IChartValues ONTime { get => oNTime; set => SetProperty(ref oNTime, value); }
+        //public IChartValues OFFTime { get => oFFTime; set => SetProperty(ref oFFTime, value); }
+        ////ONTime.Add(Convert.ToDouble(work.Days / all.Days));
+        ////        OFFTime.Add(Convert.ToDouble((all.Days - work.Days) / all.Days));
+
+        /// <summary>
+        /// x轴设置
+        /// </summary>
+        public  void GetXAxisX()
+        {
+            XAxisX.Clear();
+            var labels = new List<string>();
+            if (Starttime != null&& Endtime != null)
+            {
+                DateTime sta = (DateTime)starttime;
+                DateTime end = (DateTime)endtime;
+                for (; sta <= end;)
+                {
+                    sta = sta.AddDays(1);
+                    labels.Add(sta.ToString("MM/dd"));
+                }
+            }
+            XAxisX.Add(
+                new Axis
+                {
+                    //坐标值
+                    Labels = labels,
+                    Separator = new LiveCharts.Wpf.Separator
+                    {
+                        Step = 1,
+                    },
+                });
+        }
+        /// <summary>
+        /// 折线图赋值
+        /// </summary>
+        /// <param name="ID">当前选中的人</param>
+        public void LoadingChart(string ID)
+        {
+            LineSeries.Clear();
+            PieSeries.Clear();
+            if (Starttime != null && Endtime != null)
+            {
+                var personnel = mes.Find(e => e.ID == ID);
+                DateTime sta = (DateTime)starttime;
+                DateTime end = (DateTime)endtime;
+                TimeSpan all = end - sta;
+                TimeSpan work = Convert.ToDateTime(personnel.EndTime) - Convert.ToDateTime(personnel.StarTime);
+                var a =Convert.ToDouble( work.Days) /Convert.ToDouble( all.Days);
+                double b = Convert.ToDouble((all.Days - work.Days) / all.Days);
+                var res = new LineSeries
+                {
+                    Title = personnel.Name,
+                    Values = new ChartValues<int>(),
+                    LineSmoothness = 0
+                };
+
+                var pie = new PieSeries
+                {
+                    Title = "工作时间",
+                    Values = new ChartValues<double>
+                     {
+                       Math.Round(Convert.ToDouble( work.Days) /Convert.ToDouble( all.Days),2)
+                     }
+                };
+
+                var pie1 = new PieSeries
+                {
+                    Title = "未安排时间",
+                    Values = new ChartValues<double>
+                     {
+                       Math.Round((Convert.ToDouble(all.Days) - Convert.ToDouble( work.Days)) /Convert.ToDouble(all.Days),2)
+                     }
+                };
+                for (; sta <= end;)
+                {
+                    sta = sta.AddDays(1);
+                    if (Convert.ToDateTime(personnel.StarTime) < sta && sta < Convert.ToDateTime(personnel.EndTime))
+                    {
+                        res.Values.Add(1);
+                    }
+                    else
+                    {
+                        res.Values.Add(0);
+                    }
+                }
+
+                LineSeries.Add(res);
+                PieSeries.Add(pie);
+                PieSeries.Add(pie1);
+            }
+        }
+
+        public void LoadingPieSeries()
+        {
+            PieSeries.Clear();
+        }
+
+        #endregion
     }
 }

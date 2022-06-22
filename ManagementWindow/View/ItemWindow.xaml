@@ -8,10 +8,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              FontFamily="{Binding AppData.FontFamilyAll}">
-    <ScrollViewer VerticalScrollBarVisibility="Hidden"  x:Name="sc" Margin="30 0 0 0">
+    <ScrollViewer VerticalScrollBarVisibility="Hidden"  x:Name="sc" >
         <Viewbox>
-            <UniformGrid Margin="0 10 5 0"  Width="{Binding ElementName=sc,Path=ActualWidth}"
-                     Columns="4"  x:Name="ViemBorder" 
+            <UniformGrid Margin="30 10 5 0"  Width="{Binding ElementName=sc,Path=ActualWidth}"
+                     Columns="3"  x:Name="ViemBorder" 
                      VerticalAlignment="Top" HorizontalAlignment="Left">
             </UniformGrid>
         </Viewbox>

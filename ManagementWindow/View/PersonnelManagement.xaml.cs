@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace ManagementWindow.View
 {
@@ -31,6 +32,7 @@ namespace ManagementWindow.View
                 view.SortDescriptions.Add(new SortDescription("ItemNum", ListSortDirection.Ascending));
                 //搜索
                 view.Filter = UserFilter;
+
             };
         }
         /// <summary>
@@ -62,6 +64,26 @@ namespace ManagementWindow.View
             view.SortDescriptions.Add(new SortDescription("ItemNum", ListSortDirection.Ascending));
             //搜索
             view.Filter = UserFilter;
+        }
+
+        private void lvUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (starte.SelectedDate != null && end.SelectedDate != null)
+            {
+                var vm = this.DataContext as PersonnelManagementViewModel;
+                Staff staff = this.lvUsers.SelectedItem as Staff;
+                if (staff != null)
+                {
+                    vm.LoadingChart(staff.ID);
+                    vm.GetXAxisX();
+                    this.grid.Visibility = System.Windows.Visibility.Visible;
+                }
+            }
+        }
+
+        private void button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.grid.Visibility = System.Windows.Visibility.Hidden;
         }
     }
 }
